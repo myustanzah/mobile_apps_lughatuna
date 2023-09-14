@@ -1,0 +1,1 @@
+export const SET_DATA_PAYMENT = "SET_DATA_PAYMENT";
