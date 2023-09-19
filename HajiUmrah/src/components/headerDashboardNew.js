@@ -9,7 +9,7 @@ const HeaderDashboardNew = () => {
                 <Text style={style.text}>MENELADANI {'\n'}<Text style={{color: "yellow"}}>HAJI & UMRAH</Text> {'\n'}RASULULLAH</Text>
             </View>
             <View style={style.logo}>
-                <Image source={require('../assets/icon.png')} style={{width: 80, height: 80}}></Image>
+                <Image source={require('../assets/logo_1.png')} style={{width: 80, height: 95}}></Image>
             </View>
         </View>
     )
@@ -17,7 +17,7 @@ const HeaderDashboardNew = () => {
 
 const style = StyleSheet.create({
     container: {
-        backgroundColor: 'black',
+        backgroundColor: '#222222',
         width: "100%",
         height: "auto",
         flexDirection: "row",
@@ -35,7 +35,9 @@ const style = StyleSheet.create({
         fontSize: 20
     },
     text: {
-        color: 'white'
+        color: 'white',
+        fontSize: 18,
+        fontFamily: "LEMONMILK-Regular"
     }
 })
 

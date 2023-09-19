@@ -1,23 +1,22 @@
 import { Text } from "galio-framework"
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, Image } from "react-native"
+
+import { JudulMenu } from "../style/style"
+
+const styles = StyleSheet.create(JudulMenu);
+
 
 export default function MenuSerbaSerbi(){
     return (
         <View style={styles.containerMenu}>
-            <View style={styles.menu1}>
-                <Text>SERBA & SERBI</Text>
+            <View style={styles.judul}>
+                <View style={styles.judulLogo}>
+                    <Image source={require('../../../assets/icon.png')} style={{width: 65, height: 65}}></Image>
+                </View>
+                <View style={styles.judulText}>
+                    <Text color="white" bold size={17}>SERBA & SERBI</Text>
+                </View>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    containerMenu: {
-        width: "100%",
-        height: "auto"
-    },
-    // menu1: {
-    //     width: 150,
-    //     height: 150
-    // }
-})

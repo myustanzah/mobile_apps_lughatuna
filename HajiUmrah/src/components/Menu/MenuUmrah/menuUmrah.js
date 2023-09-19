@@ -1,9 +1,12 @@
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native"
 import { Text } from "galio-framework"
-import { View, StyleSheet, Image } from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { JudulMenu } from "../style/style"
 
-import ButtonNormal from "../../Button/ButtonNormal";
+const styles = StyleSheet.create(JudulMenu);
+
+// import ButtonNormal from "../../Button/ButtonNormal";
 // import HexagonGrid from "../../Button/HexagonGrid";
 // import ButtonHexagon from "../../Button/ButtonHexagon"
 
@@ -30,38 +33,48 @@ export default function MenuUmrah(){
     return (
         <View style={styles.containerMenu}>
             <View style={styles.judul}>
-                <Image source={require('../../../assets/icon.png')} style={{width: 50, height: 50}}></Image>
-                <Text color="black">MENELADANI UMRAH RASULLUAH</Text>
+                <View style={styles.judulLogo}>
+                    <Image source={require('../../../assets/logo_1.png')} style={{width: 65, height: 75}}></Image>
+                </View>
+                <View style={styles.judulText}>
+                    <Text color="white" size={15} style={styles.fontJudul}>MENELADANI {'\n'}<Text color="yellow">UMRAH</Text> {'\n'}RASULULLAH</Text>
+                </View>
             </View>
             {/* <HexagonGrid data={hexagonData} /> */}
             <View style={styles.menu}>
-                <ButtonNormal title="Manasik Umrah Kedua : Ihram" onPress={goToPageOne} color="green" size="large" />
-                <ButtonNormal title="Manasik Umrah Kedua : Tawaf" color="red" onPress={goToPagePaywall} size="large" />
-                <ButtonNormal title="Manasik Umrah Ketiga : Sai" color="blue" size="large" />
-                <ButtonNormal title="Manasik Umrah Terakhir : Tahallul" color="black" size="large" />
+                <View style={styles.lineOne}>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u1.png')} style={{width: 80, height: 80}} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u2.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                    {/* <ButtonNormal title="Manasik Umrah Kedua : Ihram" onPress={goToPageOne} color="green" size="large" />
+                    <ButtonNormal title="Manasik Umrah Kedua : Tawaf" color="red" onPress={goToPagePaywall} size="large" /> */}
+                </View>
+                <View style={styles.lineOne}>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u3.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u4.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u5.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                    {/* <ButtonNormal title="Manasik Umrah Ketiga : Sai" color="blue" size="large" />
+                    <ButtonNormal title="Manasik Umrah Terakhir : Tahallul" color="black" size="large" />
+                    <ButtonNormal title="Manasik Umrah Terakhir : Tahallul" color="black" size="large" />    */}
+                </View>
+                <View style={styles.lineOne}>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u1.png')} style={{width: 80, height: 80}} />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Image source={require('../../../assets/Menu/Menu1/u2.png')} style={{width: 80, height: 80}}/>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    containerMenu: {
-        width: "100%",
-        height: "auto",
-        padding: 40
-    },
-    judul: {
-        width: "100%",
-        height: "auto",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    menu: {
-        width: "100%",
-        height: "100%",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
-    }
-})

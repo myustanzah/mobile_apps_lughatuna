@@ -6,7 +6,11 @@ const headerNavDashboard = {
 const bodyDashboard = {
     partBody: {
         flex: 1,
-        backgroundColor: 'yellow'
+        backgroundColor: '#184531'
+    },
+    scroolBody: {
+        marginRight : 10,
+        marginLeft : 10,
     }
 }
 

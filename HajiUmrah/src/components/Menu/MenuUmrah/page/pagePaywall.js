@@ -28,7 +28,6 @@ export default function Paywall(){
         getPackages();
     },[])
 
-    console.log("ini paketnya", packages[0])
     const header = () => <Text>Islampedia Store Premium</Text>
     const footer = () => {
         console.warn(

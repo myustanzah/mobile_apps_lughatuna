@@ -1,7 +1,9 @@
+const _path_font = "./src/assets/Font/"
+
 module.exports = {
     project: {
         ios:{},
         android:{}
     },
-    assets:['./src/assets/Font/lemon_milk/'],
+    assets:[ _path_font + 'LEMONMILK-Regular.otf', _path_font + 'TrajanPro.ttf'],
 }
