@@ -9,8 +9,8 @@ const bodyDashboard = {
         backgroundColor: '#184531'
     },
     scroolBody: {
-        marginRight : 10,
-        marginLeft : 10,
+        marginRight : 5,
+        marginLeft : 5,
     }
 }
 

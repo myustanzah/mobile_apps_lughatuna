@@ -9,4 +9,4 @@
 export const API_KEY = 'goog_RgdWuHeWgDOXjvhjaPeXkOgAbLX';
 
 // console.error("Modify this property to reflect your app's entitlement")
-export const ENTITLEMENT = 'pro';
+export const ENTITLEMENT_ID = 'pro';

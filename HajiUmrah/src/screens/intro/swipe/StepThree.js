@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { Text } from "galio-framework";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
-import LinearGradient from "react-native-linear-gradient"
+import LinearGradient from "react-native-linear-gradient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { AsyncStorage } from "react-native"
+
 
 export default function StepThree({navigation}){
 
@@ -10,6 +13,21 @@ export default function StepThree({navigation}){
             navigation.navigate("NavDashboard", { screen: "dashboard" })
         }, 4000)
     }, [])
+    
+    useEffect(()=>{
+        
+        _storeData = async () => {
+          try {
+            await AsyncStorage.setItem('isInstall', 'true');
+
+          } catch (error) {
+            // Error saving data
+            console.warn(error)
+          }
+        };
+        
+        _storeData()
+      },[])
 
     return (
         // <LinearGradient start={{x: 0, y: 0.3}} end={{x: 1, y: 0}} colors={['#fffc00', '#ffffff']} style={styles.container}>

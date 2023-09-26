@@ -1,8 +1,9 @@
 import * as React from "react";
 import { useNavigation } from "@react-navigation/native"
 import { Text } from "galio-framework"
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity, ScrollView, ImageBackground } from "react-native"
 import { JudulMenu } from "../style/style"
+import { checkSubscription } from "../../../helpers/checkSubcription";
 
 const styles = StyleSheet.create(JudulMenu);
 
@@ -19,8 +20,13 @@ export default function MenuUmrah(){
         navigation.navigate("pageOne")
     }
 
-    const goToPagePaywall = () => {
-        navigation.navigate("paywal")
+    const goToPageTwo = async () => {
+        const resultCheck = await checkSubscription();
+        if (resultCheck === "user_pro") {
+            navigation.navigate("pageTwo")
+        } else {
+            navigation.navigate("paywal")
+        }
     }
 
     // const hexagonData = [
@@ -40,40 +46,54 @@ export default function MenuUmrah(){
                     <Text color="white" size={15} style={styles.fontJudul}>MENELADANI {'\n'}<Text color="yellow">UMRAH</Text> {'\n'}RASULULLAH</Text>
                 </View>
             </View>
-            {/* <HexagonGrid data={hexagonData} /> */}
+            <TouchableOpacity style={styles.lihatSemua}>
+                <Text color="yellow">lihat semua</Text>
+            </TouchableOpacity>
             <View style={styles.menu}>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u1.png')} style={{width: 80, height: 80}} />
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.lineOne}>
+                    <TouchableOpacity style={styles.btnMenu} onPress={goToPageOne}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu1/u_01.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText} color="black">Menasik Umrah Pertama : <Text bold h3>IHRAM</Text></Text>
+                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u2.png')} style={{width: 80, height: 80}}/>
+
+                    <TouchableOpacity style={styles.btnMenu} onPress={goToPageTwo}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu1/u_02.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText} color="black">Menasik Umrah Kedua :       <Text bold h3>TAWAF</Text></Text>
+                         </ImageBackground>
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.btnMenu} onPress={goToPageTwo}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu1/u_03.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText} color="black">Menasik Umrah Ketiga :                 <Text bold h3>SAI</Text></Text>
+                         </ImageBackground>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.btnMenu} onPress={goToPageTwo}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu1/u_04.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText} color="black">Menasik Umrah Terakhir : <Text bold h3>TAHALLUL</Text></Text>
+                         </ImageBackground>
+                    </TouchableOpacity>
+                    
                     {/* <ButtonNormal title="Manasik Umrah Kedua : Ihram" onPress={goToPageOne} color="green" size="large" />
                     <ButtonNormal title="Manasik Umrah Kedua : Tawaf" color="red" onPress={goToPagePaywall} size="large" /> */}
-                </View>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u3.png')} style={{width: 80, height: 80}}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u4.png')} style={{width: 80, height: 80}}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u5.png')} style={{width: 80, height: 80}}/>
-                    </TouchableOpacity>
-                    {/* <ButtonNormal title="Manasik Umrah Ketiga : Sai" color="blue" size="large" />
-                    <ButtonNormal title="Manasik Umrah Terakhir : Tahallul" color="black" size="large" />
-                    <ButtonNormal title="Manasik Umrah Terakhir : Tahallul" color="black" size="large" />    */}
-                </View>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u1.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu1/u2.png')} style={{width: 80, height: 80}}/>
-                    </TouchableOpacity>
-                </View>
+                </ScrollView>
             </View>
         </View>
     )

@@ -1,5 +1,5 @@
 import { Text } from "galio-framework"
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity, ImageBackground } from "react-native"
 import { JudulMenu } from "../style/style"
 
 const styles = StyleSheet.create(JudulMenu);
@@ -15,32 +15,33 @@ export default function MenuHaji(){
                     <Text color="white" size={15} style={styles.fontJudul}>MENELADANI {'\n'}<Text color="yellow">HAJI</Text> {'\n'}RASULULLAH</Text>
                 </View>
             </View>
+            <TouchableOpacity style={styles.lihatSemua}>
+                <Text color="yellow">lihat semua</Text>
+            </TouchableOpacity>
             <View style={styles.menu}>
                 <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h1.png')} style={{width: 80, height: 80}} />
+                    <TouchableOpacity style={styles.btnMenuThree}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu3/h_01.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText2} color="black">Manasik Haji Hari Pertama :</Text>
+                            <Text style={{fontFamily: "LEMONMILK-Regular", fontWight: "bold", fontSize: 80}} color="black">8</Text>
+                            <Text style={styles.btnText2} color="black"><Text style={{fontFamily: "LEMONMILK-Regular"}}>Zullhijjah</Text>{'\n'}Hari Tarwiyah</Text>
+                         </ImageBackground>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h2.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h3.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h4.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h5.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h6.png')} style={{width: 80, height: 80}} />
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Image source={require('../../../assets/Menu/Menu2/h7.png')} style={{width: 80, height: 80}} />
+                    <View style={{width:10}}></View>
+                    <TouchableOpacity style={styles.btnMenuThree}>
+                        <ImageBackground
+                            source={require('../../../assets/Menu/Menu3/h_02.png')}
+                            resizeMode="cover"
+                            style={styles.imgBg}
+                         >
+                            <Text style={styles.btnText2} color="black">Manasik Haji Hari Kedua :</Text>
+                            <Text style={{fontFamily: "LEMONMILK-Regular", fontWight: "bold", fontSize: 80}} color="black" h1>9</Text>
+                            <Text style={styles.btnText2} color="black"><Text style={{fontFamily: "LEMONMILK-Regular"}}>Zullhijjah</Text>{'\n'} Hari Arafah</Text>
+                         </ImageBackground>
                     </TouchableOpacity>
                 </View>
             </View>
