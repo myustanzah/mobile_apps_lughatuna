@@ -2,10 +2,10 @@ import { Text } from "galio-framework";
 import { StyleSheet, View } from "react-native";
 
 
-export default function PageOne(){
+export default function ContentSHUSix(){
     return (
         <View style={styles.container}>
-            <Text>PageOne</Text>
+            <Text color="black">Conten Seputar Haji Umrah 6</Text>
         </View>
     )
 }

@@ -2,10 +2,10 @@ import { Text } from "galio-framework";
 import { StyleSheet, View } from "react-native";
 
 
-export default function PageTwo(){
+export default function ContentSHUThirteen(){
     return (
         <View style={styles.container}>
-            <Text>PageTwo</Text>
+            <Text color="black">Conten Seputar Haji Umrah 13</Text>
         </View>
     )
 }

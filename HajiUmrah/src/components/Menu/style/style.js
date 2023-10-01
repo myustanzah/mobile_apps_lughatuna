@@ -68,7 +68,7 @@ const JudulMenu = {
         // backgroundColor: "yellow",
         // height: "auto"
     },
-    btnMenuTwo: {
+    btnMenuTwo2: {
         width: "50%",
         height: 180,
         borderRadius: 15,
@@ -76,13 +76,34 @@ const JudulMenu = {
         // alignItems: "center",
         // justifyContent: "center",
     },
+    btnMenuTwo: {
+        width: "45%",
+        height: 180,
+        borderRadius: 15,
+        overflow: 'hidden'
+        // alignItems: "center",
+        // justifyContent: "center",
+    },
+    btnMenuThree3: {
+        width: "45%",
+        height: 250,
+        borderRadius: 15,
+        overflow: 'hidden',
+    },
     btnMenuThree: {
         width: "50%",
         height: 250,
         borderRadius: 15,
         overflow: 'hidden',
+    },
+    btnMenuDetail: {
+        width: "100%",
+        height: 150,
+        borderRadius: 15,
+        overflow: 'hidden',
+        marginBottom: 10
     }
 
 }
 
-export {JudulMenu}
+export { JudulMenu }

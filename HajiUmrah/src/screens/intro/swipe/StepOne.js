@@ -2,26 +2,39 @@ import React, { useEffect, useRef } from "react";
 import { Text } from "galio-framework";
 import { Animated, Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function StepOne({navigation}){
     const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
 
     useEffect(()=>{
+        _retrieveData = async () => {
+            try {
+              const value = await AsyncStorage.getItem('isInstall');
+              if (value === null) {
+                // We have data!!
+                const animation = Animated.timing(fadeAnim, {
+                    toValue: 1,
+                    duration: 6000,
+                    useNativeDriver: true
+                });
+        
+                animation.start(() => {
+                    navigation.navigate('StepTwo', {name: 'StepTwo'})
+                })
+        
+                return () => {
+                    animation.stop();
+                }
+              }
+            } catch (error) {
+              // Error retrieving data
+              console.warn(error)
+            }
+          };
 
-        const animation = Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 6000,
-            useNativeDriver: true
-        });
-
-        animation.start(() => {
-            navigation.navigate('StepTwo', {name: 'StepTwo'})
-        })
-
-        return () => {
-            animation.stop();
-        }
-
+        
+          _retrieveData()
     },[fadeAnim, navigation])
     
 
