@@ -1,0 +1,1 @@
+export const SET_DATA_DETAIL_MENU = "SET_DATA_DETAIL_MENU";
