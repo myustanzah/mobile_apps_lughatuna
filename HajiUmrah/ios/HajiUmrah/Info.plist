@@ -55,6 +55,8 @@
 	<array>
 		<string>LEMONMILK-Regular.otf</string>
 		<string>TrajanPro.ttf</string>
+		<string>LEMONMILK-Bold.otf</string>
+		<string>LEMONMILK-Light.otf</string>
 	</array>
 </dict>
 </plist>

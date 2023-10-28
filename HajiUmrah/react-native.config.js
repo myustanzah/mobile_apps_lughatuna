@@ -5,5 +5,10 @@ module.exports = {
         ios:{},
         android:{}
     },
-    assets:[ _path_font + 'LEMONMILK-Regular.otf', _path_font + 'TrajanPro.ttf'],
+    assets:[ 
+        _path_font + 'LEMONMILK-Regular.otf', 
+        _path_font + 'TrajanPro.ttf',
+        _path_font + 'LEMONMILK-Bold.otf',
+        _path_font + 'LEMONMILK-Light.otf'
+    ],
 }

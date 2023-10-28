@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Text } from "galio-framework"
-import { View, StyleSheet, Image, TouchableOpacity, ImageBackground } from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity, ImageBackground, Dimensions, FlatList } from "react-native"
 import { JudulMenu } from "../style/style"
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { setDataDetailMenu } from "../../../store/UtilStore/utilCreator";
 import { checkSubscription } from "../../../helpers/checkSubcription";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { API_IMAGES } from "../../../constants";
 
 const styles = StyleSheet.create(JudulMenu);
+const { height } = Dimensions.get('window');
+const menuIconUri = API_IMAGES + "/Menu/Menu2/";
 
 export default function MenuLampiran() {
 
@@ -111,6 +115,23 @@ export default function MenuLampiran() {
             style: 2
         },
     ]);
+
+    const [imgRender, setImgRender] = useState([
+        {uri: menuIconUri + 's_01.png'},
+        {uri: menuIconUri + 's_02.png'},
+        {uri: menuIconUri + 's_03.png'},
+        {uri: menuIconUri + 's_04.png'},
+        {uri: menuIconUri + 's_05.png'},
+        {uri: menuIconUri + 's_06.png'},
+        {uri: menuIconUri + 's_07.png'},
+        {uri: menuIconUri + 's_08.png'},
+        {uri: menuIconUri + 's_09.png'},
+        {uri: menuIconUri + 's_10.png'},
+        {uri: menuIconUri + 's_11.png'},
+        {uri: menuIconUri + 's_12.png'},
+        {uri: menuIconUri + 's_13.png'},
+        {uri: menuIconUri + 's_14.png'},
+    ])
 
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -233,42 +254,65 @@ export default function MenuLampiran() {
         }
     }
 
+    const renderItem = ({item}) => {
+        if(item.title === "Larangan Ihram"){
+            return (
+                <TouchableOpacity 
+                    onPress={goToPageOne} 
+                    style={[styles.btnMenuTwo2, 
+                        { backgroundColor: "red", 
+                          justifyContent: "center", 
+                          alignItems: "center", 
+                          height: hp(25),
+                          width: wp(37.5) 
+                          }]}>
+                        <Text style={styles.btnText1} size={wp(5)} color="white">LARANGAN IHRAM</Text>
+                </TouchableOpacity>
+                ) 
+            } else {
+                return (
+                    <TouchableOpacity 
+                        onPress={item.onPress} 
+                        style={[styles.btnMenuTwo2, 
+                        { 
+                            height: hp(25),
+                            width: wp(36),
+                        }]}>
+                        <ImageBackground
+                            source={{uri: imgRender[item.imgIndex - 4].uri}}
+                            resizeMode="cover"
+                            style={[styles.imgBg, { width: "100%", height: "100%" }]}
+                        >
+                            <Text style={styles.btnText1} size={wp(5)} color="black">{item.title}</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+                )
+        }
+    }
+
 
     return (
         <View style={styles.containerMenu}>
             <View style={styles.judul}>
                 <View style={styles.judulLogo}>
-                    <Image source={require('../../../assets/logo_1.png')} style={{ width: 65, height: 75 }}></Image>
+                    <Image source={require('../../../assets/logo_1.png')} style={{ width: wp(18), height: hp(11.5), resizeMode: "cover" }}></Image>
                 </View>
                 <View style={styles.judulText}>
-                    <Text color="white" size={15} style={styles.fontJudul}>Seputar Haji & Umrah</Text>
+                    <Text color="white" size={wp(4)} style={styles.fontJudul}>Seputar Haji & Umrah</Text>
                 </View>
             </View>
             <TouchableOpacity style={styles.lihatSemua} onPress={goToDetailMenu}>
-                <Text color="yellow">Lihat semua</Text>
+                <Text color="yellow" size={wp(3)}>LIHAT SEMUA</Text>
             </TouchableOpacity>
             <View style={styles.menu}>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity onPress={goToPageOne} style={[styles.btnMenuTwo2, { backgroundColor: "red", justifyContent: "center", alignItems: "center" }]}>
-                        {/* <ImageBackground
-                            source={require('../../../assets/Menu/Menu2/s_01.png')}
-                            resizeMode="cover"
-                            style={styles.imgBg}
-                         > */}
-                        <Text style={styles.btnText1} color="white">LARANGAN IHRAM</Text>
-                        {/* </ImageBackground> */}
-                    </TouchableOpacity>
-                    <View style={{ width: 10 }}></View>
-                    <TouchableOpacity onPress={goToPageTwo} style={styles.btnMenuTwo2}>
-                        <ImageBackground
-                            source={require('../../../assets/Menu/Menu2/s_02.png')}
-                            resizeMode="cover"
-                            style={styles.imgBg}
-                        >
-                            <Text style={styles.btnText1} color="white">MIQAT</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                </View>
+               <FlatList
+                    horizontal 
+                    data={allMenuData}
+                    showsHorizontalScrollIndicator={false} 
+                    contentContainerStyle={styles.lineOne} 
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+               />
             </View>
         </View>
     )

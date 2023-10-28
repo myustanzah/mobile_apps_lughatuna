@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Text } from "galio-framework";
 import { Animated, Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
-import LinearGradient from "react-native-linear-gradient"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function StepOne({navigation}){
@@ -39,13 +38,11 @@ export default function StepOne({navigation}){
     
 
     return (
-        // <LinearGradient start={{x: 0, y: 0.3}} end={{x: 1, y: 0}} colors={['#fffc00', '#ffffff']} style={styles.container}>
             <Animated.View style={[styles.container, {opacity: fadeAnim}]}>
                 <View>
                     <Image source={require('../../../assets/bismillah.png')} style={{width: 100, height: 100}}></Image>
                 </View>
             </Animated.View>
-        // </LinearGradient>
     )
 }
 

@@ -2,7 +2,7 @@ const JudulMenu = {
     containerMenu: {
         width: "100%",
         height: "auto",
-        padding: 40,
+        padding: 20,
         // backgroundColor: "yellow"
     },
     judul: {
@@ -35,33 +35,27 @@ const JudulMenu = {
         flexDirection: "row",
         alignItems: "center",
         paddingTop: 5,
-        paddingBottom: 5
+        paddingBottom: 5,
     },
     btnMenu: {
-        width: 280,
-        height: 140,
-        marginRight: 10,
+        // marginRight: 10,
         // alignItems: "center",
         // justifyContent: "center",
-        borderRadius: 10
     },
     imgBg: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     btnText: {
-        fontFamily: "TrajanPro",
-        textAlign: "center",
-        fontSize: 20,
-    },
-    btnText1: {
         fontFamily: "LEMONMILK-Regular",
         textAlign: "center",
-        fontSize: 20
+    },
+    btnText1: {
+        fontFamily: "LEMONMILK-Bold",
+        textAlign: "center",
     },
     btnText2: {
-        fontFamily: "TrajanPro",
+        fontFamily: "LEMONMILK-Bold",
         textAlign: "center",
     },
     lineTwo: {
@@ -69,16 +63,14 @@ const JudulMenu = {
         // height: "auto"
     },
     btnMenuTwo2: {
-        width: "50%",
-        height: 180,
         borderRadius: 15,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginRight: 10
         // alignItems: "center",
         // justifyContent: "center",
     },
     btnMenuTwo: {
         width: "45%",
-        height: 180,
         borderRadius: 15,
         overflow: 'hidden'
         // alignItems: "center",
@@ -91,14 +83,12 @@ const JudulMenu = {
         overflow: 'hidden',
     },
     btnMenuThree: {
+        marginRight: 10,
         width: "50%",
-        height: 250,
         borderRadius: 15,
         overflow: 'hidden',
     },
     btnMenuDetail: {
-        width: "100%",
-        height: 150,
         borderRadius: 15,
         overflow: 'hidden',
         marginBottom: 10

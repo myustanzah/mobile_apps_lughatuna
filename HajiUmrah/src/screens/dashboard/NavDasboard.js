@@ -24,6 +24,7 @@ import ContentSHUEleven from "../../components/Menu/MenuSeputerHaji&Umrah/page/c
 import ContentSHUTwelve from "../../components/Menu/MenuSeputerHaji&Umrah/page/contentSHU12";
 import ContentSHUThirteen from "../../components/Menu/MenuSeputerHaji&Umrah/page/contentSHU13";
 import ContentSHUFourteen from "../../components/Menu/MenuSeputerHaji&Umrah/page/contentSHU14";
+
 import ContentHajiOne from "../../components/Menu/MenuHaji/page/contentHaji1";
 import ContentHajiTwo from "../../components/Menu/MenuHaji/page/contentHaji2";
 import ContentHajiThree from "../../components/Menu/MenuHaji/page/contentHaji3";
@@ -36,33 +37,33 @@ export default function NavDasboard() {
         <DashboardStartedStack.Navigator>
             <DashboardStartedStack.Screen name="dashboard" component={Dashboard} options={{ title: "dashboard", headerShown: false }} />
             <DashboardStartedStack.Screen name="paywal" component={PagePaywall} options={{ title: "Islampedia Store Premium" }} />
-            <DashboardStartedStack.Screen name="detailMenu" component={DetailMenu} options={{ title: "Show All Menu", headerShown: true }} />
+            <DashboardStartedStack.Screen name="detailMenu" component={DetailMenu} options={{ title: "List Menu", headerShown: false }} />
 
-            <DashboardStartedStack.Screen name="contentUmrahOne" component={ContentUmrahOne} options={{ title: "contentUmrahOne" }} />
-            <DashboardStartedStack.Screen name="contentUmrahTwo" component={ContentUmrahTwo} options={{ title: "contentUmrahTwo" }} />
-            <DashboardStartedStack.Screen name="contentUmrahThree" component={ContentUmrahThree} options={{ title: "contentUmrahThree" }} />
-            <DashboardStartedStack.Screen name="contentUmrahFour" component={ContentUmrahFour} options={{ title: "contentUmrahFour" }} />
+            <DashboardStartedStack.Screen name="contentUmrahOne" component={ContentUmrahOne} options={{ title: "contentUmrahOne", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentUmrahTwo" component={ContentUmrahTwo} options={{ title: "contentUmrahTwo", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentUmrahThree" component={ContentUmrahThree} options={{ title: "contentUmrahThree", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentUmrahFour" component={ContentUmrahFour} options={{ title: "contentUmrahFour", headerShown: false }} />
 
-            <DashboardStartedStack.Screen name="contentSHUOne" component={ContentSHUOne} options={{ title: "contentSHUOne" }} />
-            <DashboardStartedStack.Screen name="contentSHUTwo" component={ContentSHUTwo} options={{ title: "contentSHUTwo" }} />
-            <DashboardStartedStack.Screen name="contentSHUThree" component={ContentSHUThree} options={{ title: "contentSHUThree" }} />
-            <DashboardStartedStack.Screen name="contentSHUFour" component={ContentSHUFour} options={{ title: "contentSHUFour" }} />
-            <DashboardStartedStack.Screen name="contentSHUFive" component={ContentSHUFive} options={{ title: "contentSHUFive" }} />
-            <DashboardStartedStack.Screen name="contentSHUSix" component={ContentSHUSix} options={{ title: "contentSHUSix" }} />
-            <DashboardStartedStack.Screen name="contentSHUSeven" component={ContentSHUSeven} options={{ title: "contentSHUSeven" }} />
-            <DashboardStartedStack.Screen name="contentSHUEight" component={ContentSHUEight} options={{ title: "contentSHUEight" }} />
-            <DashboardStartedStack.Screen name="contentSHUNine" component={ContentSHUNine} options={{ title: "contentSHUNine" }} />
-            <DashboardStartedStack.Screen name="contentSHUTen" component={ContentSHUTen} options={{ title: "contentSHUTen" }} />
-            <DashboardStartedStack.Screen name="contentSHUEleven" component={ContentSHUEleven} options={{ title: "contentSHUEleven" }} />
-            <DashboardStartedStack.Screen name="contentSHUTwelve" component={ContentSHUTwelve} options={{ title: "contentSHUTwelve" }} />
-            <DashboardStartedStack.Screen name="contentSHUThirteen" component={ContentSHUThirteen} options={{ title: "contentSHUThirteen" }} />
-            <DashboardStartedStack.Screen name="contentSHUFourteen" component={ContentSHUFourteen} options={{ title: "contentSHUFourteen" }} />
+            <DashboardStartedStack.Screen name="contentSHUOne" component={ContentSHUOne} options={{ title: "contentSHUOne", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUTwo" component={ContentSHUTwo} options={{ title: "contentSHUTwo", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUThree" component={ContentSHUThree} options={{ title: "contentSHUThree", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUFour" component={ContentSHUFour} options={{ title: "contentSHUFour", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUFive" component={ContentSHUFive} options={{ title: "contentSHUFive", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUSix" component={ContentSHUSix} options={{ title: "contentSHUSix", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUSeven" component={ContentSHUSeven} options={{ title: "contentSHUSeven", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUEight" component={ContentSHUEight} options={{ title: "contentSHUEight", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUNine" component={ContentSHUNine} options={{ title: "contentSHUNine", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUTen" component={ContentSHUTen} options={{ title: "contentSHUTen", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUEleven" component={ContentSHUEleven} options={{ title: "contentSHUEleven", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUTwelve" component={ContentSHUTwelve} options={{ title: "contentSHUTwelve", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUThirteen" component={ContentSHUThirteen} options={{ title: "contentSHUThirteen", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentSHUFourteen" component={ContentSHUFourteen} options={{ title: "contentSHUFourteen", headerShown: false }} />
 
 
-            <DashboardStartedStack.Screen name="contentHajiOne" component={ContentHajiOne} options={{ title: "contentHajiOne" }} />
-            <DashboardStartedStack.Screen name="contentHajiTwo" component={ContentHajiTwo} options={{ title: "contentHajiTwo" }} />
-            <DashboardStartedStack.Screen name="contentHajiThree" component={ContentHajiThree} options={{ title: "contentHajiThree" }} />
-            <DashboardStartedStack.Screen name="contentHajiFour" component={ContentHajiFour} options={{ title: "contentHajiFour" }} />
+            <DashboardStartedStack.Screen name="contentHajiOne" component={ContentHajiOne} options={{ title: "contentHajiOne", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentHajiTwo" component={ContentHajiTwo} options={{ title: "contentHajiTwo", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentHajiThree" component={ContentHajiThree} options={{ title: "contentHajiThree", headerShown: false }} />
+            <DashboardStartedStack.Screen name="contentHajiFour" component={ContentHajiFour} options={{ title: "contentHajiFour", headerShown: false }} />
 
         </DashboardStartedStack.Navigator>
     )

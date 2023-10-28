@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { Text } from "galio-framework";
 import { Image, StyleSheet, View } from "react-native";
-import LinearGradient from "react-native-linear-gradient"
-
-
-// Font
-// import BadHawkDemoRegular from '../../../assets/Font/BadHawkDemoRegular.ttf'
 
 export default function StepTwo({navigation}){
 
@@ -16,16 +11,14 @@ export default function StepTwo({navigation}){
     }, [])
 
     return (
-        // <LinearGradient start={{x: 0, y: 0.3}} end={{x: 1, y: 0}} colors={['#fffc00', '#ffffff']} style={styles.container}>
             <View style={styles.container}>
                 <View style={styles.positionContent1}>
                     <Image source={require('../../../assets/logo_1.png')} style={{width: 90, height: 110}}></Image>
                 </View>
                 <View style={styles.positionContent2}>
-                    <Text style={styles.textJudul} h5>Meneladani Haji & Umrah Rasulullah</Text>
+                    <Text style={styles.textJudul} h5>Meneladani {'\n'}Haji & Umrah {'\n'}Rasulullah</Text>
                 </View>
             </View>
-        // </LinearGradient>
     )
 }
 

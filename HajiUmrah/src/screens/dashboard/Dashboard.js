@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Text } from "galio-framework";
 import { BackHandler, SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import LinearGradient from "react-native-linear-gradient"
 import { useRoute } from "@react-navigation/native";
 
 // Style
@@ -41,17 +40,14 @@ export default function Dashboard(){
     }, []);
 
     return (
-            // <LinearGradient start={{x: 0, y: 0.3}} end={{x: 1, y: 0}} colors={['#fffc00', '#ffffff']} style={style.partBody}>
             <SafeAreaView style={style.partBody}>
-                <HeaderDashboardNew />
+                <HeaderDashboardNew headerColor={"#222222"} textColor={"white"} centerColor={"yellow"} />
                     <ScrollView style={style.scroolBody}>
                         <MenuUmrah />
                         <MenuLampiran />
                         <MenuHaji />
-                        {/* <MenuSerbaSerbi /> */}
                     </ScrollView>
-                <FooterDashboard />
+                <FooterDashboard colorText={"white"} />
             </SafeAreaView>
-            // </LinearGradient>
     )
 }

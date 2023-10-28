@@ -1,44 +1,116 @@
+import { useNavigation } from "@react-navigation/native";
 import { Text } from "galio-framework"
-import { useCallback } from "react";
-import { Alert, Image, Linking, StyleSheet, Touchable, TouchableOpacity, View } from "react-native"
+import { useCallback, useState } from "react";
+import { Pressable ,Modal , Alert, Image, Linking, StyleSheet, Touchable, TouchableOpacity, View } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
+const FooterDashboard = ({ colorText }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const navigation = useNavigation()
 
-const FooterDashboard = () => {
+    const ModalShow = () => {
+        return (
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                    setModalVisible(!modalVisible);
+                }}
+                >
+                <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <View style={styles.btnClose}>
+                        <Pressable                        
+                            onPress={() => setModalVisible(!modalVisible)}
+                            >
+                            <Text style={styles.textStyle} size={wp(5)}>Tutup</Text>
+                        </Pressable>
+                    </View>
+                    <Image source={require('../assets/icon.png')} style={{width: 50, height: 50, marginBottom: 10}}></Image>
+                    <OpenURLButton colorText={colorText} url={'http://islampedia.store'}></OpenURLButton>
+                </View>
+            </View>
+        </Modal>
+        )
+    }
+
     return (
-        <View style={style.container}>
-            <Image source={require('../assets/icon.png')} style={{width: 50, height: 50}}></Image>
-            <OpenURLButton url={'http://islampedia.store'}></OpenURLButton>
+        <View style={styles.container}>
+            <ModalShow></ModalShow>
+            <TouchableOpacity onPress={() => navigation.navigate("NavDashboard", { screen: "dashboard" })}>
+                <Image source={require('../assets/icon.png')} style={{width: 50, height: 50}}></Image>
+            </TouchableOpacity>
+            <Pressable
+                onPress={() => setModalVisible(true)}
+            >
+                <Text style={[styles.textStyle, { color: colorText }]}>islampedia.store</Text>
+            </Pressable>
         </View>
     )
 }
 
-const OpenURLButton = ({url}) => {
+const OpenURLButton = ({url, colorText}) => {
     const handlePress = useCallback(async () => {
-      // Checking if the link is supported for links with custom URL scheme.
-    //   const supported = await Linking.canOpenURL(url);
-  
-    //   if (supported) {
-        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-        // by some browser in the mobile
         await Linking.openURL(url);
-    //   } else {
-        // Alert.alert(`Don't know how to open this URL: ${url}`);
-    //   }
     }, [url]);
-  
+
     return (
         <TouchableOpacity onPress={handlePress}>
-            <Text color="white">islampedia.store</Text>
+            <Text color={colorText} size={wp(4)} style={{fontFamily: "LEMONMILK-Regular"}}>islampedia.store</Text>
         </TouchableOpacity>
     );
   };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: 'center',
         padding: 10
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        width: '80%',
+        height: 'auto',
+        margin: 20,
+        backgroundColor: "#184531",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+      },
+      buttonOpen: {
+        backgroundColor: "#F194FF",
+      },
+      btnClose: {
+        width: "100%",
+        justifyContent: "flex-end",
+        backgroundColor: "black",
+        marginBottom: 20,
+        borderRadius: 30
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
+        fontFamily: "LEMONMILK-Regular"
+      },
+      modalText: {
+        marginBottom: 5,
+        textAlign: "center"
+      }
 })
 
 export default FooterDashboard

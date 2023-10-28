@@ -8,6 +8,14 @@
     {
       "path": "src/assets/Font/TrajanPro.ttf",
       "sha1": "bb9538c864e5dcd967e15dcf9896fea5c6048bc4"
+    },
+    {
+      "path": "src/assets/Font/LEMONMILK-Bold.otf",
+      "sha1": "91cef6e742a3816c1f01f41ad039dc401bf6c968"
+    },
+    {
+      "path": "src/assets/Font/LEMONMILK-Light.otf",
+      "sha1": "9a56b6f3519f38b20e62973de1634cf10a636023"
     }
   ]
 }

@@ -2,12 +2,16 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "galio-framework"
-import { View, StyleSheet, Image, TouchableOpacity, ImageBackground } from "react-native"
+import { View, StyleSheet, Image, TouchableOpacity, ImageBackground, Dimensions, FlatList } from "react-native"
 import { JudulMenu } from "../style/style"
 import { setDataDetailMenu } from "../../../store/UtilStore/utilCreator";
 import { checkSubscription } from "../../../helpers/checkSubcription";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { API_IMAGES } from "../../../constants";
 
 const styles = StyleSheet.create(JudulMenu);
+const { height } = Dimensions.get('window');
+const menuIconUri = API_IMAGES + "/Menu/Menu3/";
 
 
 export default function MenuHaji() {
@@ -46,6 +50,13 @@ export default function MenuHaji() {
             style: 3
         },
     ]);
+
+    const [imgRender, setImgRender] = useState([
+        {uri: menuIconUri + 'h_01.png'},
+        {uri: menuIconUri + 'h_02.png'},
+        {uri: menuIconUri + 'h_03.png'},
+        {uri: menuIconUri + 'h_04.png'},
+    ])
 
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -86,45 +97,50 @@ export default function MenuHaji() {
         }
     }
 
+    const renderItem = ({item}) => {
+        return (
+            <TouchableOpacity 
+                style={[styles.btnMenuThree, 
+                { 
+                    height: hp(43),
+                    width: wp(39), 
+                }]} 
+                    onPress={item.onPress}>
+                <ImageBackground
+                    source={{uri: imgRender[item.imgIndex - 18].uri}}
+                    resizeMode="cover"
+                    style={[styles.imgBg, { width: '100%', height: '100%' }]}
+                >
+                    <Text style={styles.btnText2} size={wp(3)} color="black">{item.title}</Text>
+                    <Text style={{ fontFamily: "LEMONMILK-Regular", fontWight: "bold", fontSize: 80 }} color="black" h1>{item.tgl}</Text>
+                    <Text style={styles.btnText2} size={wp(3)} color="black"><Text size={wp(5)} style={{ fontFamily: "LEMONMILK-Regular" }}>Zullhijjah</Text>{'\n'} {item.title_detail}</Text>
+                </ImageBackground>
+            </TouchableOpacity>
+        )
+    }
+
     return (
         <View style={styles.containerMenu}>
             <View style={styles.judul}>
                 <View style={styles.judulLogo}>
-                    <Image source={require('../../../assets/logo_1.png')} style={{ width: 65, height: 75 }}></Image>
+                    <Image source={require('../../../assets/logo_1.png')} style={{ width: wp(18), height: hp(11.5), resizeMode: "cover" }}></Image>
                 </View>
                 <View style={styles.judulText}>
-                    <Text color="white" size={15} style={styles.fontJudul}>MENELADANI {'\n'}<Text color="yellow">HAJI</Text> {'\n'}RASULULLAH</Text>
+                    <Text color="white" size={wp(4)} style={styles.fontJudul}>MENELADANI {'\n'}<Text color="yellow">HAJI</Text> {'\n'}RASULULLAH</Text>
                 </View>
             </View>
             <TouchableOpacity style={styles.lihatSemua} onPress={goToDetailMenu}>
-                <Text color="yellow">lihat semua</Text>
+                <Text color="yellow" size={wp(3)}>LIHAT SEMUA</Text>
             </TouchableOpacity>
             <View style={styles.menu}>
-                <View style={styles.lineOne}>
-                    <TouchableOpacity style={styles.btnMenuThree} onPress={goToPageOne}>
-                        <ImageBackground
-                            source={require('../../../assets/Menu/Menu3/h_01.png')}
-                            resizeMode="cover"
-                            style={styles.imgBg}
-                        >
-                            <Text style={styles.btnText2} color="black">Manasik Haji Hari Pertama :</Text>
-                            <Text style={{ fontFamily: "LEMONMILK-Regular", fontWight: "bold", fontSize: 80 }} color="black">8</Text>
-                            <Text style={styles.btnText2} color="black"><Text style={{ fontFamily: "LEMONMILK-Regular" }}>Zullhijjah</Text>{'\n'}Hari Tarwiyah</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                    <View style={{ width: 10 }}></View>
-                    <TouchableOpacity style={styles.btnMenuThree} onPress={goToPageTwo}>
-                        <ImageBackground
-                            source={require('../../../assets/Menu/Menu3/h_02.png')}
-                            resizeMode="cover"
-                            style={styles.imgBg}
-                        >
-                            <Text style={styles.btnText2} color="black">Manasik Haji Hari Kedua :</Text>
-                            <Text style={{ fontFamily: "LEMONMILK-Regular", fontWight: "bold", fontSize: 80 }} color="black" h1>9</Text>
-                            <Text style={styles.btnText2} color="black"><Text style={{ fontFamily: "LEMONMILK-Regular" }}>Zullhijjah</Text>{'\n'} Hari Arafah</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-                </View>
+                <FlatList
+                    horizontal 
+                    data={allMenuData}
+                    showsHorizontalScrollIndicator={false} 
+                    contentContainerStyle={styles.lineOne} 
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+                />
             </View>
         </View>
     )

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, ScrollView, Image, FlatList } from "react-native";
 import { Text } from "galio-framework"
-import LinearGradient from "react-native-linear-gradient";
 import Purchases from "react-native-purchases";
 
 // constant
