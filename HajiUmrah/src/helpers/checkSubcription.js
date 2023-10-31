@@ -5,12 +5,12 @@ import { ENTITLEMENT_ID } from "../constants"
 const checkSubscription = async () => {
     try {
         
-        const customerInfo = await Purchases.getCustomerInfo()
-          if(typeof customerInfo.entitlements.active[ENTITLEMENT_ID] !== "undefined") {
-            // Grant user "pro" access
-            return "user_pro"
-          }
-    //   return "user_pro"
+        // const customerInfo = await Purchases.getCustomerInfo()
+        //   if(typeof customerInfo.entitlements.active[ENTITLEMENT_ID] !== "undefined") {
+        //     // Grant user "pro" access
+        //     return "user_pro"
+        //   }
+      return "user_pro"
     } catch (error) {
         console.warn(error)
         return "check_subcription_error"

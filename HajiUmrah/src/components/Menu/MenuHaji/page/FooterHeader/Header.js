@@ -4,12 +4,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 
 const { width, height } = Dimensions.get("window")
 
-export default function Header({logoUri}){
+export default function HeaderHaji({logoUri}){
     return (
         <View style={styles.headerBox}>
             <View style={styles.judul}>
                 <Image source={require('../../../../../assets/logo_1.png')} style={{width: 70, height: 85, marginRight: 15, resizeMode: "cover"}}></Image>
-                <Text style={styles.text}>MENELADANI {'\n'}<Text style={{color: "yellow"}}>HAJI & UMRAH</Text> {'\n'}RASULULLAH</Text>
+                <Text style={styles.text}>MENELADANI {'\n'}<Text style={{color: "yellow"}}>HAJI</Text> {'\n'}RASULULLAH</Text>
             </View>
             <View style={styles.logo}>
                     <Image source={{uri: logoUri}} style={styles.imgLogo}></Image>

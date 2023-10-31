@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Button, Text } from "galio-framework";
+import React, { useRef, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { StyleSheet, View, FlatList, Image, ImageBackground, Dimensions, Pressable, TouchableOpacity, Alert } from "react-native";
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import SoundPlayer from "react-native-sound-player";
@@ -7,6 +7,7 @@ import SoundPlayer from "react-native-sound-player";
 import Footer from "./FooterHeader/Footer";
 import Header from "./FooterHeader/Header";
 import { API_IMAGES } from "../../../../constants";
+import { setIsPlay } from "../../../../store/UtilStore/utilCreator";
 
 const { width, height } = Dimensions.get('window');
 const folderFile = "01_ihram"
@@ -19,9 +20,12 @@ const ContentUmrahOne = () => {
     const [incHeight, setIncHeight] = useState(0);
     const [mode, setMode] = useState("cover");
     const [slide, setSlide] = useState(0);
+    const [btnNextDisable, setBtnNextDisable] = useState(false);
+    const [btnPrevDisable, setBtnPrevDisable] = useState(false);
 
     const panGestureRef = useRef();
     const flatListRef = useRef(null);
+    const dispatch = useDispatch();
 
     const onPrevious = () => {
         if (slide === 0) return; 
@@ -37,7 +41,7 @@ const ContentUmrahOne = () => {
             setSlide(slide + 1);
         }
     }
-// API_IMAGES
+    // API_IMAGES
     const dataBook = [
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/001.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/001.mp3'}, 
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/002.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/002.mp3'}, 
@@ -52,6 +56,46 @@ const ContentUmrahOne = () => {
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/011.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/011.mp3'},
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/012.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/012.mp3'},
     ]
+
+    const daftarIsi = [
+        { id: 0 ,title: 'Manasik Umrah', onFungsi: false, styles: { fontWeight: "bold", bgColor: "grey" } },
+        { id: 1 ,title: 'Umrah Mudah & Singkat', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 2 ,title: 'Manasik Umrah Pertama: IHRAM', onFungsi: false, styles: { fontWeight: "bold", bgColor: "grey" } },
+        { id: 99 ,title: 'Rangkaian Pekerjaan Sebelum Ihram', onFungsi: true, styles: { fontWeight: "bold", bgColor: "" } },
+        { id: 3 ,title: '1. Mandi', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 4 ,title: '2. Mengenakan Wewangian', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 96 ,title: '3. Memakai Pakain Ihram', onFungsi: true, styles: { fontWeight: "", bgColor: "" } },
+        { id: 5 ,title: '  a. Pakaian Ihram Pria', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 6 ,title: '     Izar dan Rida', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 7 ,title: '  b. Pakaian Ihram Wanita', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 98 ,title: 'Rangkaian Pekerjaan Saat Ihram', onFungsi: true, styles: { fontWeight: "bold", bgColor: "" } },
+        { id: 8 ,title: '  Niat Umrah', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 97 ,title: 'Rangkaian Pekerjaan Setelah Ihram', onFungsi: true, styles: { fontWeight: "bold", bgColor: "grey" } },
+        { id: 9 ,title: '1. Membaca Talbiyah', onFungsi: false, styles: { fontWeight: "", bgColor: "grey" } },
+        { id: 10 ,title: '   Bacaan Talbiyah', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 11 ,title: '2. Tidak Melanggar Larangan Ihram', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+      ];
+
+    function onItemClick(index){
+        setSlide(index)
+        flatListRef.current.scrollToIndex({index: index})
+    }
+
+    useEffect(()=>{
+
+        if(slide === dataBook.length - 1){
+            setBtnNextDisable(true);
+        } else {
+            setBtnNextDisable(false)
+        }
+
+        if(slide === 0){
+            setBtnPrevDisable(true);
+        } else {
+            setBtnPrevDisable(false)
+        }
+
+    },[slide, setBtnNextDisable])
 
     const onGestureEvent = (event) => {
         if (event.nativeEvent.translationY > 0) {
@@ -91,6 +135,7 @@ const ContentUmrahOne = () => {
             Alert.alert(e)
             console.log(`cannot play the sound file`, e)
         }
+        dispatch(setIsPlay(true))
     }
 
     
@@ -140,10 +185,14 @@ const ContentUmrahOne = () => {
             {showFooter && 
             <Footer 
                 onNext={onNext} 
+                dataDaftarIsi={daftarIsi}
+                onNextDisable={btnNextDisable}
+                onPrevDisable={btnPrevDisable}
                 onPrevious={onPrevious}
                 decreaseSize={decreaseSize}
                 increaseSize={increaseSize}
                 playSound={playSound}
+                onItemClick={onItemClick}
             ></Footer>}
         </View>
     )

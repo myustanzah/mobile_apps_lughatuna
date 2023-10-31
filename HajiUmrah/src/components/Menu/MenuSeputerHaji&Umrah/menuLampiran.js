@@ -4,7 +4,7 @@ import { View, StyleSheet, Image, TouchableOpacity, ImageBackground, Dimensions,
 import { JudulMenu } from "../style/style"
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { setDataDetailMenu } from "../../../store/UtilStore/utilCreator";
+import { setDataDetailMenu, setHeaderLabel } from "../../../store/UtilStore/utilCreator";
 import { checkSubscription } from "../../../helpers/checkSubcription";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 import { API_IMAGES } from "../../../constants";
@@ -138,6 +138,7 @@ export default function MenuLampiran() {
 
     const goToDetailMenu = () => {
         dispatch(setDataDetailMenu(allMenuData))
+        dispatch(setHeaderLabel("HAJI & UMRAH"))
         navigation.navigate("detailMenu")
     }
 

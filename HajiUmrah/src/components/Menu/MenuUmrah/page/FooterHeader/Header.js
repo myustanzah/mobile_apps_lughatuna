@@ -9,7 +9,7 @@ export default function Header({logoUri}){
         <View style={styles.headerBox}>
             <View style={styles.judul}>
                 <Image source={require('../../../../../assets/logo_1.png')} style={{width: 70, height: 85, marginRight: 15, resizeMode: "cover"}}></Image>
-                <Text style={styles.text}>MENELADANI {'\n'}<Text style={{color: "yellow"}}>HAJI & UMRAH</Text> {'\n'}RASULULLAH</Text>
+                <Text style={styles.text}>MENELADANI {'\n'}<Text style={{color: "yellow"}}>UMRAH</Text> {'\n'}RASULULLAH</Text>
             </View>
             <View style={styles.logo}>
                     <Image source={{uri: logoUri}} style={styles.imgLogo}></Image>

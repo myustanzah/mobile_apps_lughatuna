@@ -3,10 +3,13 @@ import { Text } from "galio-framework"
 import { useCallback, useState } from "react";
 import { Pressable ,Modal , Alert, Image, Linking, StyleSheet, Touchable, TouchableOpacity, View } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { useDispatch } from "react-redux";
+import { setHeaderLabel } from "../store/UtilStore/utilCreator";
 
 const FooterDashboard = ({ colorText }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation()
+    const dispatch = useDispatch();
 
     const ModalShow = () => {
         return (
@@ -35,10 +38,15 @@ const FooterDashboard = ({ colorText }) => {
         )
     }
 
+    function gotoMenu(){
+        dispatch(setHeaderLabel("HAJI & UMRAH"))
+        navigation.navigate("NavDashboard", { screen: "dashboard" })
+    }
+
     return (
         <View style={styles.container}>
             <ModalShow></ModalShow>
-            <TouchableOpacity onPress={() => navigation.navigate("NavDashboard", { screen: "dashboard" })}>
+            <TouchableOpacity onPress={gotoMenu}>
                 <Image source={require('../assets/icon.png')} style={{width: 50, height: 50}}></Image>
             </TouchableOpacity>
             <Pressable

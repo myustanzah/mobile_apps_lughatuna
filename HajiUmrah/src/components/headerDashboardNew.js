@@ -1,13 +1,16 @@
 import { Text } from "galio-framework";
 import { StyleSheet, View, Image } from "react-native";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { useSelector } from "react-redux";
 
 
 const HeaderDashboardNew = ({headerColor, textColor, centerColor}) => {
+    const headerLabel = useSelector(state => state.UtilReducer.headerLabel);
+
     return (
         <View style={[style.container, { backgroundColor: headerColor }]}>
             <View style={style.judul}>
-                <Text style={[style.text, { color: textColor }]}>MENELADANI {'\n'}<Text style={{color: centerColor }}>HAJI & UMRAH</Text> {'\n'}RASULULLAH</Text>
+                <Text style={[style.text, { color: textColor }]}>MENELADANI {'\n'}<Text style={{color: centerColor }}>{headerLabel}</Text> {'\n'}RASULULLAH</Text>
             </View>
             <View style={style.logo}>
                 <Image source={require('../assets/logo_1.png')} style={{width: 80, height: 95}}></Image>

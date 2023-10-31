@@ -1,1 +1,3 @@
 export const SET_DATA_DETAIL_MENU = "SET_DATA_DETAIL_MENU";
+export const SET_IS_PLAY = "SET_IS_PLAY";
+export const SET_HEADER_LABEL = "SET_HEADER_LABEL";

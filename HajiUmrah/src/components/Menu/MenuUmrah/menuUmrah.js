@@ -6,7 +6,7 @@ import { View, StyleSheet, Image, TouchableOpacity, ImageBackground, Dimensions,
 import { PanGestureHandler, State } from "react-native-gesture-handler"
 import { JudulMenu } from "../style/style"
 import { checkSubscription } from "../../../helpers/checkSubcription";
-import { setDataDetailMenu } from "../../../store/UtilStore/utilCreator";
+import { setDataDetailMenu, setHeaderLabel } from "../../../store/UtilStore/utilCreator";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 import { API_IMAGES } from "../../../constants";
 
@@ -55,9 +55,9 @@ export default function MenuUmrah() {
 
     const [imgRender, setImgRender] = useState([
         { uri: menuIconUri + 'u_01.png'},
-        { uri: menuIconUri + 'u_01.png'},
-        { uri: menuIconUri + 'u_01.png'},
-        { uri: menuIconUri + 'u_01.png'},
+        { uri: menuIconUri + 'u_02.png'},
+        { uri: menuIconUri + 'u_03.png'},
+        { uri: menuIconUri + 'u_04.png'},
     ])
 
     const dispatch = useDispatch();
@@ -65,6 +65,7 @@ export default function MenuUmrah() {
 
     const goToDetailMenu = () => {
         dispatch(setDataDetailMenu(allMenuData))
+        dispatch(setHeaderLabel("UMRAH"))
         navigation.navigate("detailMenu")
     }
 

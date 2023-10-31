@@ -3,45 +3,37 @@ import React, { useState } from 'react';
 import { Alert, FlatList, Image, Modal, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-const items = [
-  { title: 'Introduction' },
-  { title: 'Pekerjaan Sebelum Ihram' },
-  { title: 'Pekerjaan Saat Mulai Berihram' },
-  { title: 'Pekerjaan Setelah Berihram' },
-];
-
-
 const ModalShow = React.forwardRef((props, ref) => {
-        const [modalVisible, setModalVisible] = useState(false);
-
-        function showModal(){
-            setModalVisible(true)
+        const [modalVisibleUmrah, setModalVisibleUmrah] = useState(false);
+        const { dataDaftarIsi, onItemClick } = props;
+        function showModalUmrah(){
+          setModalVisibleUmrah(true)
         }
 
         React.useImperativeHandle(ref, () => ({
-            showModal
+            showModalUmrah
         }))
         
         return (
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={modalVisibleUmrah}
                 onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
+                  setModalVisibleUmrah(!modalVisibleUmrah);
                 }}
                 >
                 <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <View style={styles.btnClose}>
                         <Pressable                        
-                            onPress={() => setModalVisible(!modalVisible)}
+                            onPress={() => setModalVisibleUmrah(!modalVisibleUmrah)}
                             >
                             <Text style={styles.textStyle} h6>X</Text>
                         </Pressable>
                     </View>
-                    <TableOfContents items={items} />
+                    <TableOfContents onItemClick={onItemClick} items={dataDaftarIsi} />
                 </View>
             </View>
         </Modal>
@@ -56,8 +48,13 @@ const TableOfContents = ({ items, onItemClick }) => {
     <ScrollView contentContainerStyle={styles.containerList}>
       <Text style={styles.title}>DAFTAR ISI</Text>
       {items.map((item, index) => (
-        <TouchableOpacity key={index} onPress={() => onItemClick(index)} style={styles.item}>
-          <Text color='white' style={{fontSize: wp(4)}}>{item.title}</Text>
+        <TouchableOpacity 
+        key={index} 
+        onPress={() => onItemClick(item.id)} 
+        style={[styles.item, { backgroundColor: item.styles.bgColor }]}
+        disabled={item.onFungsi}
+        >
+          <Text color='white' style={{fontSize: wp(4), fontWeight: item.styles.fontWeight}}>{item.title}</Text>
         </TouchableOpacity>
       ))}
     </ScrollView>
@@ -118,6 +115,7 @@ const styles = StyleSheet.create({
         color: "white"
       },
       item: {
+        width: '100%',
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',

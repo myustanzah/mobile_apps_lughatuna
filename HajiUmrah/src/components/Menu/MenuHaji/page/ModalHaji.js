@@ -3,52 +3,46 @@ import React, { useState } from 'react';
 import { Alert, FlatList, Image, Modal, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-const items = [
-  { title: 'Introduction' },
-  { title: 'Pekerjaan Sebelum Ihram' },
-  { title: 'Pekerjaan Saat Mulai Berihram' },
-  { title: 'Pekerjaan Setelah Berihram' },
-];
 
+const ModalHajiShow = React.forwardRef((props, ref) => {
+        const [modalHajiVisible, setModalHajiVisible] = useState(false);
+        const { dataDaftarIsi, onItemClick } = props;
 
-const ModalShow = React.forwardRef((props, ref) => {
-        const [modalVisible, setModalVisible] = useState(false);
-
-        function showModal(){
-            setModalVisible(true)
+        function showModalHaji(){
+            setModalHajiVisible(true)
         }
 
         React.useImperativeHandle(ref, () => ({
-            showModal
+            showModalHaji
         }))
         
         return (
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={modalHajiVisible}
                 onRequestClose={() => {
                 Alert.alert("Modal has been closed.");
-                setModalVisible(!modalVisible);
+                  setModalHajiVisible(!modalHajiVisible);
                 }}
                 >
                 <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <View style={styles.btnClose}>
                         <Pressable                        
-                            onPress={() => setModalVisible(!modalVisible)}
+                            onPress={() => setModalHajiVisible(!modalHajiVisible)}
                             >
                             <Text style={styles.textStyle} h6>X</Text>
                         </Pressable>
                     </View>
-                    <TableOfContents items={items} />
+                    <TableOfContents onItemClick={onItemClick} items={dataDaftarIsi} />
                 </View>
             </View>
         </Modal>
         )
     })
 
-export default ModalShow
+export default ModalHajiShow
 
 
 const TableOfContents = ({ items, onItemClick }) => {
@@ -56,7 +50,12 @@ const TableOfContents = ({ items, onItemClick }) => {
     <ScrollView contentContainerStyle={styles.containerList}>
       <Text style={styles.title}>DAFTAR ISI</Text>
       {items.map((item, index) => (
-        <TouchableOpacity key={index} onPress={() => onItemClick(index)} style={styles.item}>
+        <TouchableOpacity 
+          key={index} 
+          onPress={() => onItemClick(item.id)} 
+          style={[styles.item, { backgroundColor: item.styles.bgColor }]}
+          disabled={item.onFungsi}
+        >
           <Text color='white' style={{fontSize: wp(4)}}>{item.title}</Text>
         </TouchableOpacity>
       ))}

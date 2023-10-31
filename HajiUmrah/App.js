@@ -20,10 +20,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 function App(){
   
 
-  useEffect(()=>{
-    Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
-    Purchases.configure({apiKey: API_KEY})
-  },[])
+  // useEffect(()=>{
+  //   Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+  //   Purchases.configure({apiKey: API_KEY})
+  // },[])
 
 
   return (

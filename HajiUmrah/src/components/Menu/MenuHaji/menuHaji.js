@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Text } from "galio-framework"
 import { View, StyleSheet, Image, TouchableOpacity, ImageBackground, Dimensions, FlatList } from "react-native"
 import { JudulMenu } from "../style/style"
-import { setDataDetailMenu } from "../../../store/UtilStore/utilCreator";
+import { setDataDetailMenu, setHeaderLabel } from "../../../store/UtilStore/utilCreator";
 import { checkSubscription } from "../../../helpers/checkSubcription";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { API_IMAGES } from "../../../constants";
@@ -18,7 +18,7 @@ export default function MenuHaji() {
 
     const [allMenuData, setAllMenuData] = useState([
         {
-            title: `Manasik Haji${'\n'} Hari Pertama :`,
+            title: `Manasik Haji${'\n'} Hari Pertama:`,
             tgl: '8',
             title_detail: "Hari Tarwiyah",
             onPress: () => goToPageOne(),
@@ -26,7 +26,7 @@ export default function MenuHaji() {
             style: 3
         },
         {
-            title: `Manasik Haji${'\n'} Hari Kedua :`,
+            title: `Manasik Haji${'\n'} Hari Kedua:`,
             tgl: '9',
             title_detail: "Hari Arafah",
             onPress: () => goToPageTwo(),
@@ -34,7 +34,7 @@ export default function MenuHaji() {
             style: 3
         },
         {
-            title: `Manasik Haji${'\n'} Hari Ketiga :`,
+            title: `Manasik Haji${'\n'} Hari Ketiga:`,
             tgl: '10',
             title_detail: "Hari Iduladha",
             onPress: () => goToPageThree(),
@@ -42,7 +42,7 @@ export default function MenuHaji() {
             style: 3
         },
         {
-            title: `Manasik Haji${'\n'} Hari Terakhir :`,
+            title: `Manasik Haji${'\n'} Hari Terakhir:`,
             tgl: '11',
             title_detail: "Hari Tasyriq (11, 12 & 13)",
             onPress: () => goToPageFour(),
@@ -63,6 +63,7 @@ export default function MenuHaji() {
 
     const goToDetailMenu = () => {
         dispatch(setDataDetailMenu(allMenuData))
+        dispatch(setHeaderLabel("HAJI"))
         navigation.navigate("detailMenu")
     }
 

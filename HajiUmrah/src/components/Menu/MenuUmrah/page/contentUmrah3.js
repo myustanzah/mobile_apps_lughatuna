@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button, Text } from "galio-framework";
 import { StyleSheet, View, FlatList, Image, ImageBackground, Dimensions, Pressable, TouchableOpacity, Alert } from "react-native";
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
@@ -7,6 +7,8 @@ import SoundPlayer from "react-native-sound-player";
 import Footer from "./FooterHeader/Footer";
 import Header from "./FooterHeader/Header";
 import { API_IMAGES } from "../../../../constants";
+import { setIsPlay } from "../../../../store/UtilStore/utilCreator";
+import { useDispatch } from "react-redux";
 
 const { width, height } = Dimensions.get('window');
 const folderFile = "03_sai";
@@ -19,9 +21,12 @@ const ContentUmrahThree = () => {
     const [incHeight, setIncHeight] = useState(0);
     const [mode, setMode] = useState("cover");
     const [slide, setSlide] = useState(0);
+    const [btnNextDisable, setBtnNextDisable] = useState(false);
+    const [btnPrevDisable, setBtnPrevDisable] = useState(false);
 
     const panGestureRef = useRef();
     const flatListRef = useRef(null);
+    const dispatch = useDispatch();
 
     const onPrevious = () => {
         if (slide === 0) return; 
@@ -49,6 +54,37 @@ const ContentUmrahThree = () => {
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/028.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/028.mp3'},
         { uri: API_IMAGES + '/01_umrah/'+  folderFile  +'/image/029.png', audio: API_IMAGES + '/01_umrah/'+  folderFile  +'/audio/029.mp3'},
     ]
+
+    const daftarIsi = [
+        { id: 0 ,title: 'Manasik Umrah', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 1 ,title: 'Umrah Mudah & Singkat', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 2 ,title: 'Manasik Umrah Pertama: IHRAM', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 3 ,title: 'Rangkaian Pekerjaan Sebelum Ihram', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 4 ,title: '1. Mandi', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 5 ,title: '2. Mengenakan Wewangian', onFungsi: false, styles: { fontWeight: "", bgColor: "" } },
+        { id: 6 ,title: '3. Memakai Pakain Ihram', onFungsi: false, styles: { fontWeight: "", bgColor: "" } }
+      ];
+
+    function onItemClick(index){
+        setSlide(index)
+        flatListRef.current.scrollToIndex({index: index})
+    }
+
+    useEffect(()=>{
+
+        if(slide === dataBook.length - 1){
+            setBtnNextDisable(true);
+        } else {
+            setBtnNextDisable(false)
+        }
+
+        if(slide === 0){
+            setBtnPrevDisable(true);
+        } else {
+            setBtnPrevDisable(false)
+        }
+
+    },[slide, setBtnNextDisable])
 
     const onGestureEvent = (event) => {
         if (event.nativeEvent.translationY > 0) {
@@ -84,6 +120,7 @@ const ContentUmrahThree = () => {
     const playSound = () => {
         try {
             SoundPlayer.playUrl(dataBook[slide].audio)
+            dispatch(setIsPlay(true))
         } catch (e) {
             Alert.alert(e)
             console.log(`cannot play the sound file`, e)
@@ -138,9 +175,13 @@ const ContentUmrahThree = () => {
             <Footer 
                 onNext={onNext} 
                 onPrevious={onPrevious}
+                dataDaftarIsi={daftarIsi}
+                onNextDisable={btnNextDisable}
+                onPrevDisable={btnPrevDisable}
                 decreaseSize={decreaseSize}
                 increaseSize={increaseSize}
                 playSound={playSound}
+                onItemClick={onItemClick}
             ></Footer>}
         </View>
     )
